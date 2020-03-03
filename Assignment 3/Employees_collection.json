@@ -1,0 +1,614 @@
+{
+	"info": {
+		"_postman_id": "6a2df6ab-bf85-4321-a535-d3818e68bc6f",
+		"name": "Employees",
+		"description": "To test the employee API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Employee ID_Positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e0629a2-907e-47e8-903f-467340e88c19",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"data\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\",\r",
+							"        },\r",
+							"        \"data\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"required\": [\r",
+							"                \"id\",\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"name\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"salary\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"age\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                }\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/create",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"create"
+					]
+				},
+				"description": "Create employee id in database with valid parameters"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee ID_Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e0629a2-907e-47e8-903f-467340e88c19",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"data\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\",\r",
+							"        },\r",
+							"        \"data\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"required\": [\r",
+							"                \"id\",\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"name\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"salary\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"age\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                }\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/create",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"create"
+					]
+				},
+				"description": "Create employee id in database with valid parameters"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee details_Positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47b40ca3-2d30-413d-addd-5d76aeeffdbf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"data\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\",\r",
+							"        },\r",
+							"        \"data\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"required\": [\r",
+							"                \"id\",\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"employee_name\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"employee_salary\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"employee_age\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                }\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/employee/90",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employee",
+						"90"
+					]
+				},
+				"description": "Get employee details based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee details_Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47b40ca3-2d30-413d-addd-5d76aeeffdbf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"data\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\",\r",
+							"        },\r",
+							"        \"data\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"required\": [\r",
+							"                \"id\",\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"employee_name\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"employee_salary\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"employee_age\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                },\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                }\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/employee/0",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employee",
+						"0"
+					]
+				},
+				"description": "Validate if employee details are retrieved with invalid id"
+			},
+			"response": [
+				{
+					"name": "Get Employee details_Negative",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://dummy.restapiexample.com/api/v1/employee/0",
+							"protocol": "http",
+							"host": [
+								"dummy",
+								"restapiexample",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								"0"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Type, X-Requested-With, X-authentication, X-client"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 02 Mar 2020 08:15:10 GMT"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Host-Header",
+							"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": ""
+						},
+						{
+							"key": "Response",
+							"value": "400"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.16.0"
+						},
+						{
+							"key": "Vary",
+							"value": "User-Agent,Accept-Encoding,X-APP-JSON"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 varnish (Varnish/6.0)"
+						},
+						{
+							"key": "X-Ezoic-Cdn",
+							"value": "Miss"
+						},
+						{
+							"key": "X-Middleton-Response",
+							"value": "400"
+						},
+						{
+							"key": "X-Shard",
+							"value": "100224107"
+						},
+						{
+							"key": "X-Sol",
+							"value": "pub_site"
+						},
+						{
+							"key": "X-Varnish",
+							"value": "515400596"
+						},
+						{
+							"key": "X-Vcache",
+							"value": "Miss"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ezoab_133674=mod4; Path=/; Domain=restapiexample.com; Expires=Mon, 02 Mar 2020 08:45:09 UTC"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ezoadgid_133674=-1; Path=/; Domain=restapiexample.com; Expires=Mon, 02 Mar 2020 08:45:09 UTC"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ezoref_133674=; Path=/; Domain=restapiexample.com; Expires=Mon, 02 Mar 2020 10:15:09 UTC"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "active_template::133674=pub_site.1583136909; Path=/; Domain=restapiexample.com; Expires=Wed, 04 Mar 2020 08:15:09 UTC"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"message\": \"Id is empty\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete_Employee_Positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "130ea172-f3b1-461d-abfa-0c0a815361fa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"message\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"message\": {\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/delete/190",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"delete",
+						"190"
+					]
+				},
+				"description": "Delete an employee from database using id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Employee_Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "130ea172-f3b1-461d-abfa-0c0a815361fa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Content type json format through response header\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json;charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"const employeeschema = {\r",
+							"    \"required\": [\r",
+							"        \"status\",\r",
+							"        \"message\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"status\": {\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"message\": {\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = JSON.parse(responseBody);\r",
+							"pm.test('Validate Schema', function() {\r",
+							"  pm.response.to.have.jsonSchema(employeeschema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/delete/",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"delete",
+						""
+					]
+				},
+				"description": "Delete an employee from database without any id (Negative test case)"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
