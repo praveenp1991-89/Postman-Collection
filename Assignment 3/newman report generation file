@@ -1,0 +1,1 @@
+newman run Employees_collection.json --reporters html
